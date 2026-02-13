@@ -55,7 +55,15 @@
         footer { background: var(--bg-primary); padding: 4rem 2rem; text-align: center; border-top: 1px solid rgba(255,255,255,0.05); }
         footer p { color: var(--text-secondary); font-size: 0.9rem; }
         footer a { color: var(--accent); text-decoration: none; }
-        @media (max-width: 768px) { .nav-links { display: none; } .gallery { grid-template-columns: 1fr; gap: 1rem; } .hero { padding: 6rem 1.5rem 3rem; } }
+        .menu-toggle { display: none; background: none; border: none; cursor: pointer; padding: 0.5rem; }
+        .menu-toggle span { display: block; width: 24px; height: 2px; background: var(--text-primary); margin: 5px 0; transition: 0.3s; }
+        @media (max-width: 768px) {
+            .menu-toggle { display: block; }
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(10,10,10,0.95); flex-direction: column; padding: 1rem 2rem; gap: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+            .nav-links.active { display: flex; }
+            .gallery { grid-template-columns: 1fr; gap: 1rem; }
+            .hero { padding: 6rem 1.5rem 3rem; }
+        }
         
 .gallery-card { position: relative; aspect-ratio: 4/3; overflow: hidden; border-radius: 12px; cursor: pointer; background: var(--bg-card); transition: transform 0.4s, box-shadow 0.4s; }
 .gallery-card:hover { transform: translateY(-8px); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
@@ -78,7 +86,7 @@
     </style>
 </head>
 <body>
-    <header><nav><div class="logo">Lost<span>Places</span></div><ul class="nav-links"><li><a href="#home">Home</a></li>
+    <header><nav><div class="logo">Lost<span>Places</span></div><button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')"><span></span><span></span><span></span></button><ul class="nav-links"><li><a href="#home">Home</a></li>
                 <li><a href="#about">Über mich</a></li>
                 <li><a href="#contact">Kontakt</a></li></ul></nav></header>
     <section class="hero"><div class="hero-content"><h1>Vergessene <span>Orte</span><br>Entdecken</h1><p>Urbex Photography</p></div></section>
