@@ -176,7 +176,9 @@
         .blog-card .blog-excerpt { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 1rem 0; }
         .blog-card .blog-read-more { background: var(--accent); color: var(--bg-primary); border: none; padding: 0.6rem 1.2rem; border-radius: 4px; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
         .blog-card .blog-read-more:hover { background: var(--accent-dim); }
-        .blog-full { max-width: 800px; margin: 0 auto 4rem; padding: 3rem 2rem; background: var(--bg-card); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+        .blog-full { max-width: 800px; margin: 0 auto 4rem; padding: 3rem 2rem; background: var(--bg-card); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); display: none; }
+        .blog-full.active { display: block; animation: fadeIn 0.3s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .blog-full h2 { font-family: 'Anton', sans-serif; font-size: 2rem; margin-bottom: 1rem; }
         .blog-full .blog-meta { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
         .blog-full .blog-meta span { margin-right: 1.5rem; }
@@ -241,37 +243,9 @@
 <body>
     <header><nav><div class="logo"><img src="images/header-logo.png" alt="Lost Places Photography"></div><button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')"><span></span><span></span><span></span></button><ul class="nav-links"><li><a href="#home">Home</a></li>
                 <li><a href="#about">Über mich</a></li>
-                <li><a href="#contact">Kontakt</a></li>
-                <li><a href="#blog">Blog</a></li></ul></nav></header>
+                <li><a href="#contact">Kontakt</a></li></ul></nav></header>
     <section class="hero"><div class="hero-content"><h1>Vergessene <span>Orte</span><br>Entdecken</h1><p>Urbex Photography</p></div></section>
     
-    <section id="blog" class="blog-section">
-        <div class="section-header"><h2>Blog</h2><p>Geschichten & Updates</p></div>
-        <div class="blog-grid">
-    <article class="blog-card">
-        
-        <div class="blog-content">
-            <span class="blog-category">urbex</span>
-            <span class="blog-date">Invalid Date</span>
-            <h3>Zest</h3>
-            <p class="blog-excerpt">Ndfkksxknxdnxnxn</p>
-            <button class="blog-read-more" onclick="document.getElementById('blog-blog-1770998012711').scrollIntoView({behavior: 'smooth'})">Weiterlesen</button>
-        </div>
-    </article>
-    
-    <article id="blog-blog-1770998012711" class="blog-full">
-        <h2>Zest</h2>
-        <div class="blog-meta">
-            <span>Invalid Date</span>
-            <span>urbex</span>
-        </div>
-        <div class="blog-body">Ynfkdkxx</div>
-        <button class="blog-back" onclick="document.getElementById('blog').scrollIntoView({behavior: 'smooth'})">Zurück</button>
-    </article>
-  </div>
-    </section>
-  
-
     <section id="gallery" class="gallery-section">
         <div class="section-header"><h2>Galerien</h2><p>Wähle eine Galerie zum Anschauen</p></div>
         <div class="gallery">
@@ -302,6 +276,10 @@
     </script>
 <section id="about" class="text-section"><div class="container"><h2>Über mich</h2><div class="content"><p>Hallo! Ich bin Seb und fotografiere verlassene Orte.</p></div></div></section>
 <section id="contact" class="contact-section"><div class="container"><h2>Kontakt</h2><p>Du kannst mich erreichen unter:</p><a href="mailto:contact@example.com" class="contact-link">contact@example.com</a></div></section>
+    <script>
+        function openBlogPost(id) { document.getElementById('blog-' + id).classList.add('active'); document.getElementById('blog-' + id).scrollIntoView({behavior: 'smooth'}); }
+        function closeBlogPost(id) { document.getElementById('blog-' + id).classList.remove('active'); document.getElementById('blog').scrollIntoView({behavior: 'smooth'}); }
+    </script>
     <footer><p>&copy; 2026 Lost Places Photography</p></footer>
 </body>
 </html>
