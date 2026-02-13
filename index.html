@@ -165,6 +165,27 @@
         }
         .contact-link:hover { background: var(--accent); color: var(--bg-primary); border-color: var(--accent); }
         
+        .blog-section { padding: 6rem 2rem; background: var(--bg-secondary); }
+        .blog-grid { max-width: 1200px; margin: 0 auto; display: grid; gap: 2rem; }
+        .blog-card { background: var(--bg-card); border-radius: 12px; overflow: hidden; display: grid; grid-template-columns: 1fr; border: 1px solid rgba(255,255,255,0.05); }
+        .blog-card .blog-image { width: 100%; height: 250px; object-fit: cover; }
+        .blog-card .blog-content { padding: 1.5rem; }
+        .blog-card .blog-category { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent); }
+        .blog-card .blog-date { font-size: 0.8rem; color: var(--text-secondary); margin-right: 1rem; }
+        .blog-card h3 { font-family: 'Anton', sans-serif; font-size: 1.4rem; margin: 0.5rem 0; color: var(--text-primary); }
+        .blog-card .blog-excerpt { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 1rem 0; }
+        .blog-card .blog-read-more { background: var(--accent); color: var(--bg-primary); border: none; padding: 0.6rem 1.2rem; border-radius: 4px; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
+        .blog-card .blog-read-more:hover { background: var(--accent-dim); }
+        .blog-full { max-width: 800px; margin: 0 auto 4rem; padding: 3rem 2rem; background: var(--bg-card); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+        .blog-full h2 { font-family: 'Anton', sans-serif; font-size: 2rem; margin-bottom: 1rem; }
+        .blog-full .blog-meta { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+        .blog-full .blog-meta span { margin-right: 1.5rem; }
+        .blog-full .blog-body { color: var(--text-primary); line-height: 1.8; }
+        .blog-full .blog-body img { max-width: 100%; border-radius: 8px; margin: 1.5rem 0; }
+        .blog-full .blog-body p { margin-bottom: 1rem; }
+        .blog-full .blog-back { background: var(--border); color: var(--text-primary); border: none; padding: 0.6rem 1.2rem; border-radius: 4px; font-size: 0.85rem; cursor: pointer; }
+        .blog-full .blog-back:hover { background: var(--accent-dim); }
+        
         .lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; padding: 2rem; }
         .lightbox.active { display: flex; }
         .lightbox-content img { max-width: 90vw; max-height: 90vh; border-radius: 4px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); }
