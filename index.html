@@ -92,27 +92,35 @@
     <section class="hero"><div class="hero-content"><h1>Vergessene <span>Orte</span><br>Entdecken</h1><p>Urbex Photography</p></div></section>
     
     <section id="gallery" class="gallery-section">
-        <div class="section-header"><h2>Galerie</h2><p>Wähle ein Bild</p></div>
-        <div class="gallery"><div class="gallery-item" onclick="openLightbox(0)"><img src="images/photo-1770983337330.jpeg" alt="Foto" loading="lazy"><div class="overlay"><div class="overlay-content"><h3>Foto</h3><p></p></div></div></div>
-            <div class="gallery-item" onclick="openLightbox(1)"><img src="images/photo-1770987404349.jpg" alt="IMG_9630" loading="lazy"><div class="overlay"><div class="overlay-content"><h3>IMG_9630</h3><p>31.8MB → 2.2MB</p></div></div></div>
+        <div class="section-header"><h2>Galerien</h2><p>Wähle eine Galerie zum Anschauen</p></div>
+        <div class="gallery">
+            <div class="gallery-card" onclick="openGallery('gallery-1770983264470')">
+                <img src="images/photo-1770983337330.jpeg" alt="Eberbach 2026">
+                <div class="overlay"><div class="overlay-content"><h3>Eberbach 2026</h3><p>2 Fotos</p></div></div>
+            </div>
         </div>
     </section>
-    <div class="lightbox" id="lightbox">
-        <button class="lightbox-close" onclick="closeLightbox()"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-        <button class="lightbox-nav lightbox-prev" onclick="prevImage()"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
-        <div class="lightbox-content"><img src="" alt="" id="lightbox-img"></div>
-        <button class="lightbox-nav lightbox-next" onclick="nextImage()"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
+    
+    <div class="gallery-modal" id="modal-gallery-1770983264470">
+        <button class="modal-close" onclick="closeGalleryModal('gallery-1770983264470')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+        <h2>Eberbach 2026</h2>
+        <div class="gallery-thumbs"><div class="gallery-thumb" onclick="showImage('gallery-1770983264470', 0)"><img src="images/photo-1770983337330.jpeg" alt="Foto"></div><div class="gallery-thumb" onclick="showImage('gallery-1770983264470', 1)"><img src="images/photo-1770987404349.jpg" alt="IMG_9630"></div></div>
+        <div class="gallery-viewer" id="viewer-gallery-1770983264470"><img src="images/photo-1770983337330.jpeg" alt=""></div>
+        <button class="lightbox-nav lightbox-prev" onclick="prevGalleryImage('gallery-1770983264470')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
+        <button class="lightbox-nav lightbox-next" onclick="nextGalleryImage('gallery-1770983264470')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
     </div>
     <script>
-        const images = ['images/photo-1770983337330.jpeg',
-            'images/photo-1770987404349.jpg'];
-        let current = 0;
-        function openLightbox(i) { current = i; document.getElementById('lightbox-img').src = images[i]; document.getElementById('lightbox').classList.add('active'); }
-        function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
-        function nextImage() { current = (current + 1) % images.length; document.getElementById('lightbox-img').src = images[current]; }
-        function prevImage() { current = (current - 1 + images.length) % images.length; document.getElementById('lightbox-img').src = images[current]; }
-        document.addEventListener('keydown', e => { if (!document.getElementById('lightbox').classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextImage(); if (e.key === 'ArrowLeft') prevImage(); });
-        document.getElementById('lightbox').addEventListener('click', e => { if (e.target.id === 'lightbox') closeLightbox(); });
+        const gallery-1770983264470_0 = 'images/photo-1770983337330.jpeg';
+            const gallery-1770983264470_1 = 'images/photo-1770987404349.jpg';
+        let gallery-1770983264470_idx = 0;
+        const gallery-1770983264470_imgs = ['images/photo-1770983337330.jpeg','images/photo-1770987404349.jpg'];
+    </script>
+    <script>
+        function openGallery(id) { document.getElementById('modal-' + id).classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeGalleryModal(id) { document.getElementById('modal-' + id).classList.remove('active'); document.body.style.overflow = ''; }
+        function showImage(id, idx) { window[id + '_idx'] = idx; document.getElementById('viewer-' + id).querySelector('img').src = window[id + '_imgs'][idx]; }
+        function nextGalleryImage(id) { window[id + '_idx'] = (window[id + '_idx'] + 1) % window[id + '_imgs'].length; document.getElementById('viewer-' + id).querySelector('img').src = window[id + '_imgs'][window[id + '_idx']]; }
+        function prevGalleryImage(id) { window[id + '_idx'] = (window[id + '_idx'] - 1 + window[id + '_imgs'].length) % window[id + '_imgs'].length; document.getElementById('viewer-' + id).querySelector('img').src = window[id + '_imgs'][window[id + '_idx']]; }
     </script>
 <section id="about" class="text-section"><div class="container"><h2>Über mich</h2><div class="content"><p>Hallo! Ich bin Seb und fotografiere verlassene Orte.</p></div></div></section>
 <section id="contact" class="contact-section"><div class="container"><h2>Kontakt</h2><p>Du kannst mich erreichen unter:</p><a href="mailto:contact@example.com" class="contact-link">contact@example.com</a></div></section>
