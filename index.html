@@ -110,17 +110,14 @@
         <button class="lightbox-nav lightbox-next" onclick="nextGalleryImage('gallery-1770983264470')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
     </div>
     <script>
-        const gallery-1770983264470_0 = 'images/photo-1770983337330.jpeg';
-            const gallery-1770983264470_1 = 'images/photo-1770987404349.jpg';
-        let gallery-1770983264470_idx = 0;
-        const gallery-1770983264470_imgs = ['images/photo-1770983337330.jpeg','images/photo-1770987404349.jpg'];
-    </script>
-    <script>
+        const galleryData = {
+            'gallery-1770983264470': { images: ['images/photo-1770983337330.jpeg','images/photo-1770987404349.jpg'], idx: 0 }
+        };
         function openGallery(id) { document.getElementById('modal-' + id).classList.add('active'); document.body.style.overflow = 'hidden'; }
         function closeGalleryModal(id) { document.getElementById('modal-' + id).classList.remove('active'); document.body.style.overflow = ''; }
-        function showImage(id, idx) { window[id + '_idx'] = idx; document.getElementById('viewer-' + id).querySelector('img').src = window[id + '_imgs'][idx]; }
-        function nextGalleryImage(id) { window[id + '_idx'] = (window[id + '_idx'] + 1) % window[id + '_imgs'].length; document.getElementById('viewer-' + id).querySelector('img').src = window[id + '_imgs'][window[id + '_idx']]; }
-        function prevGalleryImage(id) { window[id + '_idx'] = (window[id + '_idx'] - 1 + window[id + '_imgs'].length) % window[id + '_imgs'].length; document.getElementById('viewer-' + id).querySelector('img').src = window[id + '_imgs'][window[id + '_idx']]; }
+        function showImage(id, idx) { galleryData[id].idx = idx; document.getElementById('viewer-' + id).querySelector('img').src = galleryData[id].images[idx]; }
+        function nextGalleryImage(id) { const g = galleryData[id]; g.idx = (g.idx + 1) % g.images.length; document.getElementById('viewer-' + id).querySelector('img').src = g.images[g.idx]; }
+        function prevGalleryImage(id) { const g = galleryData[id]; g.idx = (g.idx - 1 + g.images.length) % g.images.length; document.getElementById('viewer-' + id).querySelector('img').src = g.images[g.idx]; }
     </script>
 <section id="about" class="text-section"><div class="container"><h2>Über mich</h2><div class="content"><p>Hallo! Ich bin Seb und fotografiere verlassene Orte.</p></div></div></section>
 <section id="contact" class="contact-section"><div class="container"><h2>Kontakt</h2><p>Du kannst mich erreichen unter:</p><a href="mailto:contact@example.com" class="contact-link">contact@example.com</a></div></section>
