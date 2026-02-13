@@ -218,7 +218,7 @@
     </style>
 </head>
 <body>
-    <header><nav><div class="logo"><img src="images/header-logo.jpg" alt="Lost Places Photography"></div><button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')"><span></span><span></span><span></span></button><ul class="nav-links"><li><a href="#home">Home</a></li>
+    <header><nav><div class="logo"><img src="images/header-logo.png" alt="Lost Places Photography"></div><button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')"><span></span><span></span><span></span></button><ul class="nav-links"><li><a href="#home">Home</a></li>
                 <li><a href="#about">Über mich</a></li>
                 <li><a href="#contact">Kontakt</a></li></ul></nav></header>
     <section class="hero"><div class="hero-content"><h1>Vergessene <span>Orte</span><br>Entdecken</h1><p>Urbex Photography</p></div></section>
@@ -226,24 +226,24 @@
     <section id="gallery" class="gallery-section">
         <div class="section-header"><h2>Galerien</h2><p>Wähle eine Galerie zum Anschauen</p></div>
         <div class="gallery">
-            <div class="gallery-card" onclick="openGallery('gallery-1770983264470')">
-                <img src="images/photo-1770983337330.jpeg" alt="Eberbach 2026">
-                <div class="overlay"><div class="overlay-content"><h3>Eberbach 2026</h3><p>2 Fotos</p></div></div>
+            <div class="gallery-card" onclick="openGallery('gallery-1770994048847')">
+                <img src="images/photo-1770994720471.jpg" alt="Verlassener Bahnhof">
+                <div class="overlay"><div class="overlay-content"><h3>Verlassener Bahnhof</h3><p>1 Fotos</p></div></div>
             </div>
         </div>
     </section>
     
-    <div class="gallery-modal" id="modal-gallery-1770983264470">
-        <button class="modal-close" onclick="closeGalleryModal('gallery-1770983264470')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
-        <h2>Eberbach 2026</h2>
-        <div class="gallery-thumbs"><div class="gallery-thumb" onclick="showImage('gallery-1770983264470', 0)"><img src="images/photo-1770983337330.jpeg" alt="Foto"></div><div class="gallery-thumb" onclick="showImage('gallery-1770983264470', 1)"><img src="images/photo-1770987404349.jpg" alt="IMG_9630"></div></div>
-        <div class="gallery-viewer" id="viewer-gallery-1770983264470"><img src="images/photo-1770983337330.jpeg" alt=""></div>
-        <button class="lightbox-nav lightbox-prev" onclick="prevGalleryImage('gallery-1770983264470')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
-        <button class="lightbox-nav lightbox-next" onclick="nextGalleryImage('gallery-1770983264470')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
+    <div class="gallery-modal" id="modal-gallery-1770994048847">
+        <button class="modal-close" onclick="closeGalleryModal('gallery-1770994048847')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+        <h2>Verlassener Bahnhof</h2>
+        <div class="gallery-thumbs"><div class="gallery-thumb" onclick="showImage('gallery-1770994048847', 0)"><img src="images/photo-1770994720471.jpg" alt="IMG_3AD37DB8-96BA-4E0F-A1CB-CF90327E3FE7"></div></div>
+        <div class="gallery-viewer" id="viewer-gallery-1770994048847"><img src="images/photo-1770994720471.jpg" alt=""></div>
+        <button class="lightbox-nav lightbox-prev" onclick="prevGalleryImage('gallery-1770994048847')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
+        <button class="lightbox-nav lightbox-next" onclick="nextGalleryImage('gallery-1770994048847')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
     </div>
     <script>
         const galleryData = {
-            'gallery-1770983264470': { images: ['images/photo-1770983337330.jpeg','images/photo-1770987404349.jpg'], idx: 0 }
+            'gallery-1770994048847': { images: ['images/photo-1770994720471.jpg'], idx: 0 }
         };
         function openGallery(id) { document.getElementById('modal-' + id).classList.add('active'); document.body.style.overflow = 'hidden'; }
         function closeGalleryModal(id) { document.getElementById('modal-' + id).classList.remove('active'); document.body.style.overflow = ''; }
