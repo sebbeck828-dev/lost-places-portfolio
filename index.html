@@ -228,7 +228,7 @@
         <div class="gallery">
             <div class="gallery-card" onclick="openGallery('gallery-1770994048847')">
                 <img src="images/photo-1770994720471.jpg" alt="Verlassener Bahnhof">
-                <div class="overlay"><div class="overlay-content"><h3>Verlassener Bahnhof</h3><p>1 Fotos</p></div></div>
+                <div class="overlay"><div class="overlay-content"><h3>Verlassener Bahnhof</h3><p>0 Fotos</p></div></div>
             </div>
         </div>
     </section>
@@ -236,14 +236,14 @@
     <div class="gallery-modal" id="modal-gallery-1770994048847">
         <button class="modal-close" onclick="closeGalleryModal('gallery-1770994048847')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
         <h2>Verlassener Bahnhof</h2>
-        <div class="gallery-thumbs"><div class="gallery-thumb" onclick="showImage('gallery-1770994048847', 0)"><img src="images/photo-1770994720471.jpg" alt="IMG_3AD37DB8-96BA-4E0F-A1CB-CF90327E3FE7"></div></div>
+        <div class="gallery-thumbs"></div>
         <div class="gallery-viewer" id="viewer-gallery-1770994048847"><img src="images/photo-1770994720471.jpg" alt=""></div>
         <button class="lightbox-nav lightbox-prev" onclick="prevGalleryImage('gallery-1770994048847')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg></button>
         <button class="lightbox-nav lightbox-next" onclick="nextGalleryImage('gallery-1770994048847')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
     </div>
     <script>
         const galleryData = {
-            'gallery-1770994048847': { images: ['images/photo-1770994720471.jpg'], idx: 0 }
+            'gallery-1770994048847': { images: [], idx: 0 }
         };
         function openGallery(id) { document.getElementById('modal-' + id).classList.add('active'); document.body.style.overflow = 'hidden'; }
         function closeGalleryModal(id) { document.getElementById('modal-' + id).classList.remove('active'); document.body.style.overflow = ''; }
