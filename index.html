@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost Places Photography | Urbex Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --bg-primary: #0a0a0a;
+            --bg-secondary: #141414;
+            --bg-card: #1a1a1a;
+            --text-primary: #ffffff;
+            --text-secondary: #a0a0a0;
+            --accent: #c9a962;
+            --accent-hover: #d4b872;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Header */
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        nav {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: var(--text-primary);
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 8rem 2rem 4rem;
+            background: linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-secondary) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(ellipse at center, rgba(201, 169, 98, 0.1) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            margin-bottom: 1.5rem;
+            line-height: 1.1;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            font-weight: 300;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator svg {
+            width: 24px;
+            height: 24px;
+            stroke: var(--text-secondary);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+
+        /* Gallery Section */
+        .gallery-section {
+            padding: 6rem 2rem;
+            background: var(--bg-secondary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-header h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 1rem;
+        }
+
+        .section-header p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .gallery {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            padding: 0 1rem;
+        }
+
+        .gallery-item {
+            position: relative;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            border-radius: 12px;
+            cursor: pointer;
+            background: var(--bg-card);
+            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.4s ease;
+        }
+
+        .gallery-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .gallery-item .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8) 0%, transparent 50%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex;
+            align-items: flex-end;
+            padding: 1.5rem;
+        }
+
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .overlay-content {
+            color: white;
+        }
+
+        .overlay-content h3 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+        }
+
+        .overlay-content p {
+            font-size: 0.85rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        /* Lightbox */
+        .lightbox {
+            position: fixed;
+            inset: 0;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .lightbox.active {
+            display: flex;
+            animation: fadeIn 0.3s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 90vw;
+            max-height: 90vh;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: fixed;
+            top: 2rem;
+            right: 2rem;
+            width: 48px;
+            height: 48px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-close svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+        }
+
+        .lightbox-nav {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 56px;
+            height: 56px;
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s ease;
+        }
+
+        .lightbox-nav:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .lightbox-nav svg {
+            width: 24px;
+            height: 24px;
+            stroke: white;
+        }
+
+        .lightbox-prev {
+            left: 2rem;
+        }
+
+        .lightbox-next {
+            right: 2rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--bg-primary);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        footer p {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        footer a:hover {
+            color: var(--accent-hover);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .gallery {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .hero {
+                padding: 6rem 1.5rem 3rem;
+            }
+
+            .lightbox-nav {
+                width: 44px;
+                height: 44px;
+            }
+
+            .lightbox-prev {
+                left: 1rem;
+            }
+
+            .lightbox-next {
+                right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Lost<span>Places</span></div>
+            <ul class="nav-links">
+                <li><a href="#gallery">Galerie</a></li>
+                <li><a href="#about">Über mich</a></li>
+                <li><a href="#contact">Kontakt</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <div class="hero-content">
+            <h1>Vergessene <span>Orte</span><br>Entdecken</h1>
+            <p>Urbex Photography – Erkunde die Schönheit verlassener Orte. Eine visuelle Reise in vergessen Welten.</p>
+        </div>
+        <div class="scroll-indicator">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+            </svg>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery-section">
+        <div class="section-header">
+            <h2>Galerie</h2>
+            <p>Jedes Bild erzählt eine Geschichte von vergessenen Orten und vergangenen Zeiten.</p>
+        </div>
+
+        <div class="gallery">
+            <div class="gallery-item" onclick="openLightbox(0)">
+                <img src="images/photo-1.jpg" alt="Lost Place Photography" loading="lazy">
+                <div class="overlay"><div class="overlay-content"><h3>Verlassener Ort</h3><p>Urbex Exploration</p></div></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(1)">
+                <img src="images/photo-2.jpg" alt="Lost Place Photography" loading="lazy">
+                <div class="overlay"><div class="overlay-content"><h3>Verlassener Ort</h3><p>Urbex Exploration</p></div></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(2)">
+                <img src="images/photo-3.jpg" alt="Lost Place Photography" loading="lazy">
+                <div class="overlay"><div class="overlay-content"><h3>Verlassener Ort</h3><p>Urbex Exploration</p></div></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(3)">
+                <img src="images/photo-4.jpg" alt="Lost Place Photography" loading="lazy">
+                <div class="overlay"><div class="overlay-content"><h3>Verlassener Ort</h3><p>Urbex Exploration</p></div></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(4)">
+                <img src="images/photo-5.jpg" alt="Lost Place Photography" loading="lazy">
+                <div class="overlay"><div class="overlay-content"><h3>Verlassener Ort</h3><p>Urbex Exploration</p></div></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(5)">
+                <img src="images/photo-6.jpg" alt="Lost Place Photography" loading="lazy">
+                <div class="overlay"><div class="overlay-content"><h3>Verlassener Ort</h3><p>Urbex Exploration</p></div></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(6)">
+                <img src="images/photo-7.jpg" alt="Lost Place Photography" loading="lazy">
+                <div class="overlay"><div class="overlay-content"><h3>Verlassener Ort</h3><p>Urbex Exploration</p></div></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(7)">
+                <img src="images/photo-8.jpg" alt="Lost Place Photography" loading="lazy">
+                <div class="overlay"><div class="overlay-content"><h3>Verlassener Ort</h3><p>Urbex Exploration</p></div></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(8)">
+                <img src="images/photo-9.jpg" alt="Lost Place Photography" loading="lazy">
+                <div class="overlay"><div class="overlay-content"><h3>Verlassener Ort</h3><p>Urbex Exploration</p></div></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(9)">
+                <img src="images/photo-10.jpg" alt="Lost Place Photography" loading="lazy">
+                <div class="overlay"><div class="overlay-content"><h3>Verlassener Ort</h3><p>Urbex Exploration</p></div></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(10)">
+                <img src="images/photo-11.jpg" alt="Lost Place Photography" loading="lazy">
+                <div class="overlay"><div class="overlay-content"><h3>Verlassener Ort</h3><p>Urbex Exploration</p></div></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(11)">
+                <img src="images/photo-12.jpg" alt="Lost Place Photography" loading="lazy">
+                <div class="overlay"><div class="overlay-content"><h3>Verlassener Ort</h3><p>Urbex Exploration</p></div></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(12)">
+                <img src="images/photo-13.jpg" alt="Lost Place Photography" loading="lazy">
+                <div class="overlay"><div class="overlay-content"><h3>Verlassener Ort</h3><p>Urbex Exploration</p></div></div>
+            </div>
+            <div class="gallery-item" onclick="openLightbox(13)">
+                <img src="images/photo-14.jpg" alt="Lost Place Photography" loading="lazy">
+                <div class="overlay"><div class="overlay-content"><h3>Verlassener Ort</h3><p>Urbex Exploration</p></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close" onclick="closeLightbox()">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+            </svg>
+        </button>
+        <button class="lightbox-nav lightbox-prev" onclick="prevImage()">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+            </svg>
+        </button>
+        <div class="lightbox-content">
+            <img src="" alt="Full size image" id="lightbox-img">
+        </div>
+        <button class="lightbox-nav lightbox-next" onclick="nextImage()">
+            <svg fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+            </svg>
+        </button>
+    </div>
+
+    <footer id="contact">
+        <p>&copy; 2026 Lost Places Photography | <a href="#">Instagram</a> | <a href="#">Kontakt</a></p>
+    </footer>
+
+    <script>
+        const images = [
+            'images/photo-1.jpg',
+            'images/photo-2.jpg',
+            'images/photo-3.jpg',
+            'images/photo-4.jpg',
+            'images/photo-5.jpg',
+            'images/photo-6.jpg',
+            'images/photo-7.jpg',
+            'images/photo-8.jpg',
+            'images/photo-9.jpg',
+            'images/photo-10.jpg',
+            'images/photo-11.jpg',
+            'images/photo-12.jpg',
+            'images/photo-13.jpg',
+            'images/photo-14.jpg'
+        ];
+
+        let currentIndex = 0;
+
+        function openLightbox(index) {
+            currentIndex = index;
+            document.getElementById('lightbox-img').src = images[index];
+            document.getElementById('lightbox').classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        function nextImage() {
+            currentIndex = (currentIndex + 1) % images.length;
+            document.getElementById('lightbox-img').src = images[currentIndex];
+        }
+
+        function prevImage() {
+            currentIndex = (currentIndex - 1 + images.length) % images.length;
+            document.getElementById('lightbox-img').src = images[currentIndex];
+        }
+
+        document.addEventListener('keydown', (e) => {
+            if (!document.getElementById('lightbox').classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowRight') nextImage();
+            if (e.key === 'ArrowLeft') prevImage();
+        });
+
+        document.getElementById('lightbox').addEventListener('click', (e) => {
+            if (e.target.id === 'lightbox') closeLightbox();
+        });
+    </script>
+</body>
+</html>
