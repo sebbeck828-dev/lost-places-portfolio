@@ -176,17 +176,17 @@
         .blog-card .blog-excerpt { color: var(--text-secondary); font-size: 0.9rem; line-height: 1.6; margin: 1rem 0; }
         .blog-card .blog-read-more { background: var(--accent); color: var(--bg-primary); border: none; padding: 0.6rem 1.2rem; border-radius: 4px; font-size: 0.85rem; font-weight: 600; cursor: pointer; }
         .blog-card .blog-read-more:hover { background: var(--accent-dim); }
-        .blog-full { max-width: 800px; margin: 0 auto 4rem; padding: 3rem 2rem; background: var(--bg-card); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); display: none; }
-        .blog-full.active { display: block; animation: fadeIn 0.3s ease; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .blog-full h2 { font-family: 'Anton', sans-serif; font-size: 2rem; margin-bottom: 1rem; }
-        .blog-full .blog-meta { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 2rem; padding-bottom: 1rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
-        .blog-full .blog-meta span { margin-right: 1.5rem; }
-        .blog-full .blog-body { color: var(--text-primary); line-height: 1.8; }
-        .blog-full .blog-body img { max-width: 100%; border-radius: 8px; margin: 1.5rem 0; }
-        .blog-full .blog-body p { margin-bottom: 1rem; }
-        .blog-full .blog-back { background: var(--border); color: var(--text-primary); border: none; padding: 0.6rem 1.2rem; border-radius: 4px; font-size: 0.85rem; cursor: pointer; }
-        .blog-full .blog-back:hover { background: var(--accent-dim); }
+        .blog-modal { position: fixed; inset: 0; z-index: 1000; background: rgba(10,10,10,0.95); display: none; flex-direction: column; padding: 2rem; overflow-y: auto; }
+        .blog-modal.active { display: flex; }
+        .blog-modal-content { max-width: 800px; margin: 2rem auto; padding: 3rem 2rem; background: var(--bg-card); border-radius: 12px; border: 1px solid rgba(255,255,255,0.05); }
+        .blog-modal-header { color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 1.5rem; }
+        .blog-modal-header span { margin-right: 1.5rem; }
+        .blog-modal-image { max-width: 100%; border-radius: 8px; margin: 1.5rem 0; }
+        .blog-modal-body { color: var(--text-primary); line-height: 1.8; }
+        .blog-modal-body img { max-width: 100%; border-radius: 8px; margin: 1.5rem 0; }
+        .blog-modal-body p { margin-bottom: 1rem; }
+        .blog-modal-close-btn { background: var(--accent); color: var(--bg-primary); border: none; padding: 0.7rem 1.5rem; border-radius: 4px; font-size: 0.9rem; font-weight: 600; cursor: pointer; margin-top: 1.5rem; }
+        .blog-modal-close-btn:hover { background: var(--accent-dim); }
         
         .lightbox { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.95); display: none; align-items: center; justify-content: center; padding: 2rem; }
         .lightbox.active { display: flex; }
@@ -243,9 +243,55 @@
 <body>
     <header><nav><div class="logo"><img src="images/header-logo.png" alt="Lost Places Photography"></div><button class="menu-toggle" onclick="document.querySelector('.nav-links').classList.toggle('active')"><span></span><span></span><span></span></button><ul class="nav-links"><li><a href="#home">Home</a></li>
                 <li><a href="#about">Über mich</a></li>
-                <li><a href="#contact">Kontakt</a></li></ul></nav></header>
+                <li><a href="#contact">Kontakt</a></li>
+                <li><a href="#blog">Blog</a></li></ul></nav></header>
     <section class="hero"><div class="hero-content"><h1>Vergessene <span>Orte</span><br>Entdecken</h1><p>Urbex Photography</p></div></section>
     
+    <section id="blog" class="blog-section">
+        <div class="section-header"><h2>Blog</h2><p>Geschichten & Updates</p></div>
+        <div class="blog-grid">
+    <article class="blog-card">
+        
+        <div class="blog-content">
+            <span class="blog-category">Urbex</span>
+            <span class="blog-date">13.2.2026</span>
+            <h3>Test</h3>
+            <p class="blog-excerpt">Hier geht’s ab….</p>
+            <button class="blog-read-more" onclick="openBlogPost('blog-1770998885944')">Weiterlesen</button>
+        </div>
+    </article>
+    
+    <article id="blog-blog-1770998885944" class="blog-full">
+        <h2>Test</h2>
+        <div class="blog-meta">
+            <span>13.2.2026</span>
+            <span>Urbex</span>
+        </div>
+        <div class="blog-body">Blah lmbanfkynyndnd</div>
+        <button class="blog-back" onclick="closeBlogPost('blog-1770998885944')">Zurück</button>
+    </article>
+  </div>
+        </section>
+    
+    <div class="blog-modal" id="blog-modal-blog-1770998885944">
+        <button class="modal-close" onclick="closeBlogModal('blog-1770998885944')"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg></button>
+        <div class="blog-modal-content">
+            <div class="blog-modal-header">
+                <span class="blog-modal-category">Urbex</span>
+                <span class="blog-modal-date">13.2.2026</span>
+            </div>
+            <h2>Test</h2>
+            
+            <div class="blog-modal-body">Blah lmbanfkynyndnd</div>
+            <button class="blog-modal-close-btn" onclick="closeBlogModal('blog-1770998885944')">Schließen</button>
+        </div>
+    </div>
+    <script>
+        function openBlogModal(id) { document.getElementById('blog-modal-' + id).classList.add('active'); document.body.style.overflow = 'hidden'; }
+        function closeBlogModal(id) { document.getElementById('blog-modal-' + id).classList.remove('active'); document.body.style.overflow = ''; }
+    </script>
+  
+
     <section id="gallery" class="gallery-section">
         <div class="section-header"><h2>Galerien</h2><p>Wähle eine Galerie zum Anschauen</p></div>
         <div class="gallery">
