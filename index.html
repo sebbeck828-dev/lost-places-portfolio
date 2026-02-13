@@ -78,7 +78,9 @@
     </style>
 </head>
 <body>
-    <header><nav><div class="logo">Lost<span>Places</span></div><ul class="nav-links"><li><a href="#home">Home</a></li></ul></nav></header>
+    <header><nav><div class="logo">Lost<span>Places</span></div><ul class="nav-links"><li><a href="#home">Home</a></li>
+                <li><a href="#about">Über mich</a></li>
+                <li><a href="#contact">Kontakt</a></li></ul></nav></header>
     <section class="hero"><div class="hero-content"><h1>Vergessene <span>Orte</span><br>Entdecken</h1><p>Urbex Photography</p></div></section>
     
     <section id="gallery" class="gallery-section">
@@ -102,6 +104,8 @@
         document.addEventListener('keydown', e => { if (!document.getElementById('lightbox').classList.contains('active')) return; if (e.key === 'Escape') closeLightbox(); if (e.key === 'ArrowRight') nextImage(); if (e.key === 'ArrowLeft') prevImage(); });
         document.getElementById('lightbox').addEventListener('click', e => { if (e.target.id === 'lightbox') closeLightbox(); });
     </script>
+<section id="about" class="text-section"><div class="container"><h2>Über mich</h2><div class="content"><p>Hallo! Ich bin Seb und fotografiere verlassene Orte.</p></div></div></section>
+<section id="contact" class="contact-section"><div class="container"><h2>Kontakt</h2><p>Du kannst mich erreichen unter:</p><a href="mailto:contact@example.com" class="contact-link">contact@example.com</a></div></section>
     <footer><p>&copy; 2026 Lost Places Photography</p></footer>
 </body>
 </html>
