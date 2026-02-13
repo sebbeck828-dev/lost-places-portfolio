@@ -94,6 +94,7 @@
     <section id="gallery" class="gallery-section">
         <div class="section-header"><h2>Galerie</h2><p>Wähle ein Bild</p></div>
         <div class="gallery"><div class="gallery-item" onclick="openLightbox(0)"><img src="images/photo-1770983337330.jpeg" alt="Foto" loading="lazy"><div class="overlay"><div class="overlay-content"><h3>Foto</h3><p></p></div></div></div>
+            <div class="gallery-item" onclick="openLightbox(1)"><img src="images/photo-1770987404349.jpg" alt="IMG_9630" loading="lazy"><div class="overlay"><div class="overlay-content"><h3>IMG_9630</h3><p>31.8MB → 2.2MB</p></div></div></div>
         </div>
     </section>
     <div class="lightbox" id="lightbox">
@@ -103,7 +104,8 @@
         <button class="lightbox-nav lightbox-next" onclick="nextImage()"><svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg></button>
     </div>
     <script>
-        const images = ['images/photo-1770983337330.jpeg'];
+        const images = ['images/photo-1770983337330.jpeg',
+            'images/photo-1770987404349.jpg'];
         let current = 0;
         function openLightbox(i) { current = i; document.getElementById('lightbox-img').src = images[i]; document.getElementById('lightbox').classList.add('active'); }
         function closeLightbox() { document.getElementById('lightbox').classList.remove('active'); }
