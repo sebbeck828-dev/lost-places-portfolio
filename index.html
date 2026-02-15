@@ -144,7 +144,7 @@
                 <div id="blog-list" class="blog-grid">
                     
                         <a href="#blog/wk28mnfjmlmoqwlv" class="blog-card" data-post-id="wk28mnfjmlmoqwlv">
-                            <img src="/images/1771095838590-csjcsj58r.jpg" alt="Test">
+                            <img src="images/1771095838590-csjcsj58r.jpg" alt="Test">
                             <div class="blog-card-body">
                                 <div class="blog-card-meta">2026-02-14 <span class="cat">Industrie</span></div>
                                 <h2>Test</h2>
@@ -168,7 +168,7 @@
                 <div id="gallery-list" class="gallery-grid">
                     
                         <div class="gallery-item" data-album-id="tqxsva5emlm7764b" data-category="Industrie">
-                            <img src="/images/1771067875752-z5oeqmq0k.jpg" alt="Tasz">
+                            <img src="images/1771067875752-z5oeqmq0k.jpg" alt="Tasz">
                             <span class="count">6</span>
                             <div class="overlay">
                                 <h3>Tasz</h3>
@@ -197,6 +197,19 @@
     </div>
 
     <script>
+        // Helper to fix image paths
+        const fixImagePath = (url) => {
+            if (!url) return url;
+            return url.replace(/^https?:\/\/[^\/]+/, '').replace(/^\/images\//, 'images/');
+        };
+        
+        const fixHtmlImages = (html) => {
+            if (!html) return html;
+            return html
+                .replace(/src="https?:\/\/[^\/]+\/images\//g, 'src="images/')
+                .replace(/src="\/images\//g, 'src="images/');
+        };
+        
         // Data
         const posts = [{"title":"Test","excerpt":"Xxxxxx","body":"<p style=\"text-align:center;font-size:1.25rem;\">Test</p><div class=\"row-block\" style=\"display:flex;gap:1rem;\"><div class=\"row-item\" style=\"flex:1;\"><img src=\"https://152.53.136.255:3002/images/1771095719759-s8t1owl60.jpg\" class=\"large\" style=\"max-width:100%;display:block;margin:0 auto;\" alt=\"\"></div><div class=\"row-item\" style=\"flex:1;\"><p>Etbetbetvetvetbetbtttegev.  Etbebetv.   Etgetbetetvetbetvet b. Etgetbetvetvetg3tbetvetgetgetbetbetbetbetbetbetg\n</p></div></div>","date":"2026-02-14","cover":"/images/1771095838590-csjcsj58r.jpg","coverSize":"medium","coverWidth":null,"category":"Industrie","published":true,"id":"wk28mnfjmlmoqwlv"}];
         const albums = [{"title":"Tasz","description":"","category":"Industrie","date":"2026-02-14","images":[{"id":"iza1kxrxmlm82wdv","url":"/images/1771067867386-j60c71p43.png","title":""},{"id":"32wwhlo1mlm82zet","url":"/images/1771067871291-xz849lxjm.jpg","title":""},{"id":"u02vqkm6mlm82zhx","url":"/images/1771067871508-8pqlurjit.jpg","title":""},{"id":"hougnnhymlm8304m","url":"/images/1771067872271-49nkd5r6w.jpg","title":""},{"id":"t4gdqkv6mlm830gk","url":"/images/1771067872752-o6q9od714.jpg","title":""},{"id":"rs3qrivzmlm832uh","url":"/images/1771067875752-z5oeqmq0k.jpg","title":""}],"id":"tqxsva5emlm7764b","cover":"rs3qrivzmlm832uh"}];
@@ -216,8 +229,8 @@
                     <a href="#blog" class="back-btn" onclick="showBlogList()">← Zurück</a>
                     <h1>${post.title || 'Ohne Titel'}</h1>
                     <div class="meta">${post.date} • ${post.category}</div>
-                    ${post.cover ? `<img src="${post.cover}" style="max-width:100%;border-radius:4px;margin-bottom:2rem;">` : ''}
-                    <div class="body">${post.body || ''}</div>
+                    ${post.cover ? `<img src="${fixImagePath(post.cover)}" style="max-width:100%;border-radius:4px;margin-bottom:2rem;">` : ''}
+                    <div class="body">${fixHtmlImages(post.body) || ''}</div>
                 </div>
             `;
             document.querySelector('.blog-single').scrollIntoView({ behavior: 'smooth' });
@@ -241,7 +254,7 @@
                 <div class="gallery-grid" style="grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));">
                     ${album.images.map((img, i) => `
                         <div class="gallery-item" onclick="openLightbox('${album.id}', ${i})">
-                            <img src="${img.url}" alt="${img.title || album.title}">
+                            <img src="${fixImagePath(img.url)}" alt="${img.title || album.title}">
                             <div class="overlay"><h3>${img.title || 'Bild ' + (i+1)}</h3></div>
                         </div>
                     `).join('')}
@@ -292,7 +305,7 @@
         function updateLightbox() {
             if (!currentAlbum || !currentAlbum.images[currentImageIndex]) return;
             const img = currentAlbum.images[currentImageIndex];
-            document.getElementById('lightbox-img').src = img.url;
+            document.getElementById('lightbox-img').src = fixImagePath(img.url);
             document.getElementById('lightbox-title').textContent = img.title || currentAlbum.title;
             document.getElementById('lightbox-info').textContent = (currentImageIndex + 1) + '/' + currentAlbum.images.length;
         }
